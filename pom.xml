@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>me.acomma</groupId>
-    <artifactId>admin</artifactId>
+    <groupId>me.acomma.admin</groupId>
+    <artifactId>admin-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 

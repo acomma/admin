@@ -5,21 +5,26 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>me.acomma</groupId>
-        <artifactId>admin</artifactId>
+        <groupId>me.acomma.admin</groupId>
+        <artifactId>admin-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>admin-start</artifactId>
 
+    <properties>
+        <maven.install.skip>true</maven.install.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <dependencies>
         <dependency>
-            <groupId>me.acomma</groupId>
+            <groupId>me.acomma.admin</groupId>
             <artifactId>admin-web</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>me.acomma</groupId>
+            <groupId>me.acomma.admin</groupId>
             <artifactId>admin-facade</artifactId>
             <version>${project.version}</version>
         </dependency>
