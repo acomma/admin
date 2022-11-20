@@ -1,4 +1,7 @@
 logging:
+  file:
+    name: ${logging.file.path}/admin.log
+    path: /var/log/admin
   level:
     me.acomma.admin.data.mapper: debug
 spring:
