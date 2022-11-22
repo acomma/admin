@@ -22,7 +22,9 @@ public class TraceIdFilter extends OncePerRequestFilter implements OrderedFilter
 
     @Override
     public int getOrder() {
-        return REQUEST_WRAPPER_FILTER_MAX_ORDER;
+        // 保证链路跟踪ID过滤器在 Spring Security 过滤器之前执行，
+        // 这个值是能设置的最大值，如果 -100 则无法保证在 Spring Security 过滤器之前执行
+        return REQUEST_WRAPPER_FILTER_MAX_ORDER - 101;
     }
 
     @Override

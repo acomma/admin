@@ -9,7 +9,11 @@ public enum SystemErrorCode implements ErrorCode {
 
     ACCESS_DATABASE_FAILED(3, "访问数据库失败"),
 
-    PROCESS_JSON_FAILED(4, "处理 JSON 数据失败");
+    PROCESS_JSON_FAILED(4, "处理 JSON 数据失败"),
+
+    AUTHENTICATION_FAILED(5, "认证失败"),
+
+    UNAUTHORIZED(6, "没有权限");
 
     /**
      * 系统错误码，取值范围为 0 ~ 99
