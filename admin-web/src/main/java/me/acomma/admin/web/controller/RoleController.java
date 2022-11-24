@@ -2,10 +2,11 @@ package me.acomma.admin.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.acomma.admin.common.dto.role.AddRoleDTO;
-import me.acomma.admin.common.dto.role.AssignMenuDTO;
+import me.acomma.admin.common.dto.role.UpdateRoleMenuDTO;
 import me.acomma.admin.core.application.RoleAppService;
 import me.acomma.admin.core.service.RoleService;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +25,9 @@ public class RoleController {
         roleService.addRole(dto);
     }
 
-    @PutMapping("/menu")
-    public void assignMenu(@Validated @RequestBody AssignMenuDTO dto) {
-        roleAppService.assignMenu(dto);
+    @PutMapping("/{roleId}/menus")
+    public void updateRoleMenu(@PathVariable("roleId") Long roleId, @Validated @RequestBody UpdateRoleMenuDTO dto) {
+        dto.setRoleId(roleId);
+        roleAppService.updateRoleMenu(dto);
     }
 }

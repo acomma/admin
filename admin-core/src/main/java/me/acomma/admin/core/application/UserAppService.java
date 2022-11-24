@@ -2,7 +2,7 @@ package me.acomma.admin.core.application;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
-import me.acomma.admin.common.dto.user.AssignRoleDTO;
+import me.acomma.admin.common.dto.user.UpdateUserRoleDTO;
 import me.acomma.admin.common.enums.UserErrorCode;
 import me.acomma.admin.common.exception.BusinessException;
 import me.acomma.admin.core.service.RoleService;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,13 +26,19 @@ public class UserAppService {
     private final UserRoleService userRoleService;
 
     @Transactional(rollbackFor = Exception.class)
-    public void assignRole(AssignRoleDTO dto) {
+    public void updateUserRole(UpdateUserRoleDTO dto) {
         UserPO existing = userService.getById(dto.getUserId());
         if (Objects.isNull(existing)) {
             throw new BusinessException(UserErrorCode.USER_NOT_EXIST);
         }
 
-        List<Long> validRoleIds = roleService.getValidRoleIds(dto.getRoleIds());
+        // 角色ID列表为空表示清空用户与角色的关系
+        List<Long> validRoleIds;
+        if (CollectionUtils.isEmpty(dto.getRoleIds())) {
+            validRoleIds = Collections.emptyList();
+        } else {
+            validRoleIds = roleService.getValidRoleIds(dto.getRoleIds());
+        }
 
         List<UserRolePO> existingUserRoles = userRoleService.list(Wrappers.<UserRolePO>lambdaQuery()
                 .eq(UserRolePO::getUserId, dto.getUserId()));

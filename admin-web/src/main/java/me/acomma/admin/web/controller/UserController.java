@@ -2,11 +2,12 @@ package me.acomma.admin.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.acomma.admin.common.dto.user.AddUserDTO;
-import me.acomma.admin.common.dto.user.AssignRoleDTO;
+import me.acomma.admin.common.dto.user.UpdateUserRoleDTO;
 import me.acomma.admin.core.application.UserAppService;
 import me.acomma.admin.core.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,8 +28,9 @@ public class UserController {
         userService.addUser(dto);
     }
 
-    @PutMapping("/role")
-    public void assignRole(@Validated @RequestBody AssignRoleDTO dto) {
-        userAppService.assignRole(dto);
+    @PutMapping("/{userId}/roles")
+    public void updateUserRole(@PathVariable("userId") Long userId, @Validated @RequestBody UpdateUserRoleDTO dto) {
+        dto.setUserId(userId);
+        userAppService.updateUserRole(dto);
     }
 }
