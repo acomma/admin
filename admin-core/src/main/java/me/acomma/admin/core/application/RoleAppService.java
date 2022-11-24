@@ -2,12 +2,16 @@ package me.acomma.admin.core.application;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
+import me.acomma.admin.common.dto.role.UpdateRoleActionDTO;
 import me.acomma.admin.common.dto.role.UpdateRoleMenuDTO;
 import me.acomma.admin.common.enums.RoleErrorCode;
 import me.acomma.admin.common.exception.BusinessException;
+import me.acomma.admin.core.service.MenuActionService;
 import me.acomma.admin.core.service.MenuService;
+import me.acomma.admin.core.service.RoleActionService;
 import me.acomma.admin.core.service.RoleMenuService;
 import me.acomma.admin.core.service.RoleService;
+import me.acomma.admin.data.model.po.RoleActionPO;
 import me.acomma.admin.data.model.po.RoleMenuPO;
 import me.acomma.admin.data.model.po.RolePO;
 import org.springframework.stereotype.Component;
@@ -24,6 +28,8 @@ public class RoleAppService {
     private final RoleService roleService;
     private final MenuService menuService;
     private final RoleMenuService roleMenuService;
+    private final MenuActionService menuActionService;
+    private final RoleActionService roleActionService;
 
     @Transactional(rollbackFor = Exception.class)
     public void updateRoleMenu(UpdateRoleMenuDTO dto) {
@@ -62,6 +68,46 @@ public class RoleAppService {
                     })
                     .toList();
             roleMenuService.saveBatch(poList);
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void updateRoleAction(UpdateRoleActionDTO dto) {
+        RolePO existing = roleService.getById(dto.getRoleId());
+        if (Objects.isNull(existing)) {
+            throw new BusinessException(RoleErrorCode.ROLE_NOT_EXIST);
+        }
+
+        // 操作ID列表为空表示清空角色与操作的关系
+        List<Long> validActionIds;
+        if (CollectionUtils.isEmpty(dto.getActionIds())) {
+            validActionIds = Collections.emptyList();
+        } else {
+            validActionIds = menuActionService.getValidActionIds(dto.getActionIds());
+        }
+
+        List<RoleActionPO> existingRoleActions = roleActionService.list(Wrappers.<RoleActionPO>lambdaQuery()
+                .eq(RoleActionPO::getRoleId, dto.getRoleId()));
+        List<Long> existingActionIds = existingRoleActions.stream().map(RoleActionPO::getActionId).toList();
+
+        List<Long> needRemoveActionIds = existingActionIds.stream().filter(e -> !validActionIds.contains(e)).toList();
+        if (!CollectionUtils.isEmpty(needRemoveActionIds)) {
+            roleActionService.remove(Wrappers.<RoleActionPO>lambdaQuery()
+                    .eq(RoleActionPO::getRoleId, dto.getRoleId())
+                    .in(RoleActionPO::getActionId, needRemoveActionIds));
+        }
+
+        List<Long> needAddActionIds = validActionIds.stream().filter(e -> !existingActionIds.contains(e)).toList();
+        if (!CollectionUtils.isEmpty(needAddActionIds)) {
+            List<RoleActionPO> poList = needAddActionIds.stream()
+                    .map(needAddActionId -> {
+                        RoleActionPO po = new RoleActionPO();
+                        po.setRoleId(dto.getRoleId());
+                        po.setActionId(needAddActionId);
+                        return po;
+                    })
+                    .toList();
+            roleActionService.saveBatch(poList);
         }
     }
 }

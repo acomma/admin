@@ -5,7 +5,9 @@ public enum MenuErrorCode implements BusinessErrorCode {
 
     MENU_NOT_EXIST(2, "菜单不存在"),
 
-    PARENT_MENU_NOT_EXIST(3, "上级菜单不存在");
+    PARENT_MENU_NOT_EXIST(3, "上级菜单不存在"),
+
+    MENU_ACTION_EXIST(4, "菜单操作已经存在");
 
     private final Integer number;
 
