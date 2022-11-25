@@ -6,7 +6,7 @@ import me.acomma.admin.common.enums.MenuErrorCode;
 import me.acomma.admin.common.exception.BusinessException;
 import me.acomma.admin.common.vo.menu.MenuVO;
 import me.acomma.admin.core.service.MenuService;
-import me.acomma.admin.data.model.po.MenuPO;
+import me.acomma.admin.data.po.MenuPO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;

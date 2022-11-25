@@ -6,7 +6,7 @@ import me.acomma.admin.common.dto.role.AddRoleDTO;
 import me.acomma.admin.common.enums.RoleErrorCode;
 import me.acomma.admin.common.exception.BusinessException;
 import me.acomma.admin.data.mapper.RoleMapper;
-import me.acomma.admin.data.model.po.RolePO;
+import me.acomma.admin.data.po.RolePO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

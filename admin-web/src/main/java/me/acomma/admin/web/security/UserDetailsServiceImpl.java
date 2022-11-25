@@ -2,7 +2,7 @@ package me.acomma.admin.web.security;
 
 import lombok.RequiredArgsConstructor;
 import me.acomma.admin.core.service.UserService;
-import me.acomma.admin.data.model.po.UserPO;
+import me.acomma.admin.data.po.UserPO;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

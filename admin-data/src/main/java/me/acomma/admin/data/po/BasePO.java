@@ -1,4 +1,4 @@
-package me.acomma.admin.data.model.po;
+package me.acomma.admin.data.po;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;

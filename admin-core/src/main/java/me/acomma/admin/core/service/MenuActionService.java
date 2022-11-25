@@ -2,7 +2,7 @@ package me.acomma.admin.core.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import me.acomma.admin.data.mapper.MenuActionMapper;
-import me.acomma.admin.data.model.po.MenuActionPO;
+import me.acomma.admin.data.po.MenuActionPO;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 

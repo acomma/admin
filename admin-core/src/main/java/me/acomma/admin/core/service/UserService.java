@@ -6,7 +6,7 @@ import me.acomma.admin.common.dto.user.AddUserDTO;
 import me.acomma.admin.common.enums.UserErrorCode;
 import me.acomma.admin.common.exception.BusinessException;
 import me.acomma.admin.data.mapper.UserMapper;
-import me.acomma.admin.data.model.po.UserPO;
+import me.acomma.admin.data.po.UserPO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

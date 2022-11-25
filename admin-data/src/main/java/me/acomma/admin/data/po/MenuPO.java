@@ -1,53 +1,53 @@
-package me.acomma.admin.data.model.po;
+package me.acomma.admin.data.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serial;
 
 /**
- * 菜单操作
+ * 菜单
  */
 @Getter
 @Setter
-@ToString
-@Builder
+@ToString(callSuper = true)
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "menu_action")
-public class MenuActionPO extends BasePO {
+@TableName(value = "menu")
+public class MenuPO extends BasePO {
     @Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * 操作ID
-     */
-    @TableId(value = "action_id", type = IdType.AUTO)
-    private Long actionId;
-
-    /**
      * 菜单ID
      */
-    @TableField(value = "menu_id")
+    @TableId(value = "menu_id", type = IdType.AUTO)
     private Long menuId;
 
     /**
-     * 操作编码
+     * 上级ID
      */
-    @TableField(value = "code")
-    private String code;
+    @TableField(value = "parent_id")
+    private Long parentId;
 
     /**
-     * 操作名称
+     * 菜单名称
      */
     @TableField(value = "`name`")
     private String name;
+
+    /**
+     * 菜单路径
+     */
+    @TableField(value = "`path`")
+    private String path;
 }

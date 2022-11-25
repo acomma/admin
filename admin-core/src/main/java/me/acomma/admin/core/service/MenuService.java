@@ -7,7 +7,7 @@ import me.acomma.admin.common.dto.menu.AddMenuDTO;
 import me.acomma.admin.common.enums.MenuErrorCode;
 import me.acomma.admin.common.exception.BusinessException;
 import me.acomma.admin.data.mapper.MenuMapper;
-import me.acomma.admin.data.model.po.MenuPO;
+import me.acomma.admin.data.po.MenuPO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
