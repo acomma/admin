@@ -2,9 +2,11 @@ package me.acomma.admin.web.security;
 
 import lombok.RequiredArgsConstructor;
 import me.acomma.admin.core.manager.TokenManager;
+import me.acomma.admin.core.service.MenuActionService;
 import me.acomma.admin.core.service.UserService;
 import me.acomma.admin.data.po.UserPO;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -15,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -22,6 +25,7 @@ import java.util.Objects;
 public class TokenFilter extends OncePerRequestFilter {
     private final TokenManager tokenManager;
     private final UserService userService;
+    private final MenuActionService menuActionService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -46,12 +50,15 @@ public class TokenFilter extends OncePerRequestFilter {
             return;
         }
 
+        List<String> menuActionCodes = menuActionService.getMenuActionCodeByUserId(userId);
+        List<SimpleGrantedAuthority> authorities = menuActionCodes.stream().map(SimpleGrantedAuthority::new).toList();
+
         LoginUser loginUser = LoginUser.builder()
                 .userId(user.getUserId())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .build();
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, null);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, authorities);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
         filterChain.doFilter(request, response);

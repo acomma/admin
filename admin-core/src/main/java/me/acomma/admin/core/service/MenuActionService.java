@@ -18,4 +18,8 @@ public class MenuActionService extends ServiceImpl<MenuActionMapper, MenuActionP
         List<MenuActionPO> actions = super.listByIds(actionIds);
         return actions.stream().map(MenuActionPO::getActionId).toList();
     }
+
+    public List<String> getMenuActionCodeByUserId(Long userId) {
+        return this.baseMapper.getMenuActionCodeByUserId(userId);
+    }
 }

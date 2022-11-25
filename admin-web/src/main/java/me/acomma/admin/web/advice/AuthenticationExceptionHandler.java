@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-@Order(Ordered.LOWEST_PRECEDENCE - 5)
+@Order(Ordered.LOWEST_PRECEDENCE - 6)
 @Slf4j
 public class AuthenticationExceptionHandler {
     @ExceptionHandler
