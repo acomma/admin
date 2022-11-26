@@ -5,10 +5,10 @@ import me.acomma.admin.common.dto.user.UserLoginDTO;
 import me.acomma.admin.common.vo.user.UserLoginVO;
 import me.acomma.admin.core.manager.TokenManager;
 import me.acomma.admin.web.security.LoginUser;
+import me.acomma.admin.web.security.SecurityUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,8 +38,6 @@ public class LoginController {
 
     @PostMapping("/user/logout")
     public void logout() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
-        tokenManager.removeToken(loginUser.getUserId());
+        tokenManager.removeToken(SecurityUtils.getUserId());
     }
 }
