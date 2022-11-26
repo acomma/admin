@@ -22,6 +22,10 @@
 * 在 Java 开发手册中 VO 是 View Object 的缩写，也容易与 DDD 中的值对象 Value Object 混淆，但由于 VO 是 View Object 的缩写接受度更广，因此在工程中继续使用 VO 来表示视图对象，DDD 中的值对象在命名时仍然不添加任何后缀；
 * DTO 它应该是一类对象的统称，在使用到它的地方应该是更具体的 Command、Event、Message 等对象，但似乎大多数时间没有这样做，在这个项目中依然采用统称 DTO
 
+### 实体关系模型
+
+![](docs/rbac.drawio.png)
+
 ### 参考资料
 
 1. [Java开发手册(黄山版).pdf](https://github.com/alibaba/p3c)
