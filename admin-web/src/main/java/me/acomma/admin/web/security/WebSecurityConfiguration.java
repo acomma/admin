@@ -29,6 +29,7 @@ public class WebSecurityConfiguration {
                 .anyRequest().authenticated();
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.cors();
         return http.build();
     }
 
