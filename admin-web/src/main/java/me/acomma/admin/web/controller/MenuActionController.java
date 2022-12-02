@@ -2,7 +2,7 @@ package me.acomma.admin.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.acomma.admin.common.dto.menu.AddMenuActionDTO;
-import me.acomma.admin.core.application.MenuActionAppService;
+import me.acomma.admin.core.business.MenuActionBusinessService;
 import me.acomma.admin.web.security.SecurityUtils;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/menus/{menuId}")
 @RequiredArgsConstructor
 public class MenuActionController {
-    private final MenuActionAppService menuActionAppService;
+    private final MenuActionBusinessService menuActionBusinessService;
 
     @PostMapping("/actions")
     @PreAuthorize("hasAuthority('menu:action:add')")
@@ -27,6 +27,6 @@ public class MenuActionController {
         }
 
         dto.setMenuId(menuId);
-        menuActionAppService.addMenuAction(dto);
+        menuActionBusinessService.addMenuAction(dto);
     }
 }

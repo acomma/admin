@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.acomma.admin.common.dto.role.AddRoleDTO;
 import me.acomma.admin.common.dto.role.UpdateRoleActionDTO;
 import me.acomma.admin.common.dto.role.UpdateRoleMenuDTO;
-import me.acomma.admin.core.application.RoleAppService;
+import me.acomma.admin.core.business.RoleBusinessService;
 import me.acomma.admin.core.service.RoleService;
 import me.acomma.admin.web.security.SecurityUtils;
 import org.springframework.security.access.AccessDeniedException;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RoleController {
     private final RoleService roleService;
-    private final RoleAppService roleAppService;
+    private final RoleBusinessService roleBusinessService;
 
     @PostMapping
     @PreAuthorize("hasAuthority('role:add')")
@@ -46,7 +46,7 @@ public class RoleController {
         }
 
         dto.setRoleId(roleId);
-        roleAppService.updateRoleMenu(dto);
+        roleBusinessService.updateRoleMenu(dto);
     }
 
     @PutMapping("/{roleId}/actions")
@@ -57,6 +57,6 @@ public class RoleController {
         }
 
         dto.setRoleId(roleId);
-        roleAppService.updateRoleAction(dto);
+        roleBusinessService.updateRoleAction(dto);
     }
 }

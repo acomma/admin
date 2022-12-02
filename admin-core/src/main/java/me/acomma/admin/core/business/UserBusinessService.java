@@ -1,4 +1,4 @@
-package me.acomma.admin.core.application;
+package me.acomma.admin.core.business;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class UserAppService {
+public class UserBusinessService {
     private final UserService userService;
     private final RoleService roleService;
     private final UserRoleService userRoleService;

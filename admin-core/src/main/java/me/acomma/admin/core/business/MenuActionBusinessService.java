@@ -1,4 +1,4 @@
-package me.acomma.admin.core.application;
+package me.acomma.admin.core.business;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class MenuActionAppService {
+public class MenuActionBusinessService {
     private final MenuService menuService;
     private final MenuActionService menuActionService;
 

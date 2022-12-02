@@ -3,7 +3,7 @@ package me.acomma.admin.web.controller;
 import lombok.RequiredArgsConstructor;
 import me.acomma.admin.common.dto.user.AddUserDTO;
 import me.acomma.admin.common.dto.user.UpdateUserRoleDTO;
-import me.acomma.admin.core.application.UserAppService;
+import me.acomma.admin.core.business.UserBusinessService;
 import me.acomma.admin.core.service.UserService;
 import me.acomma.admin.web.security.SecurityUtils;
 import org.springframework.security.access.AccessDeniedException;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final UserAppService userAppService;
+    private final UserBusinessService userBusinessService;
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping
@@ -48,6 +48,6 @@ public class UserController {
         }
 
         dto.setUserId(userId);
-        userAppService.updateUserRole(dto);
+        userBusinessService.updateUserRole(dto);
     }
 }
