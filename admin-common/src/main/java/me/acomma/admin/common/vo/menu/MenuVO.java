@@ -10,6 +10,7 @@ import lombok.ToString;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 菜单
@@ -53,4 +54,9 @@ public class MenuVO implements Serializable {
      * 更新时间
      */
     private Date updateTime;
+
+    /**
+     * 下级菜单
+     */
+    private List<MenuVO> children;
 }
