@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserPO user = userService.findByUsername(username);
+        UserPO user = userService.getByUsername(username);
         if (Objects.isNull(user)) {
             throw new UsernameNotFoundException("用户名或密码不存在");
         }

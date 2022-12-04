@@ -28,7 +28,7 @@ public class UserService extends ServiceImpl<UserMapper, UserPO> {
         super.save(po);
     }
 
-    public UserPO findByUsername(String username) {
+    public UserPO getByUsername(String username) {
         return super.getOne(Wrappers.<UserPO>lambdaQuery().eq(UserPO::getUsername, username));
     }
 }

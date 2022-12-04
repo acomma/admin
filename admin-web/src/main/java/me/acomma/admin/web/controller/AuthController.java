@@ -12,15 +12,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/auth")
 @RequiredArgsConstructor
-public class LoginController {
+public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final TokenManager tokenManager;
 
-    @PostMapping("/user/login")
+    @PostMapping("/login")
     public UserLoginVO login(@Validated @RequestBody UserLoginDTO dto) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
@@ -36,7 +38,7 @@ public class LoginController {
         return vo;
     }
 
-    @PostMapping("/user/logout")
+    @PostMapping("/logout")
     public void logout() {
         tokenManager.removeToken(SecurityUtils.getUserId());
     }

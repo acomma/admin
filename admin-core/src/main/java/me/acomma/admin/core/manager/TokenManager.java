@@ -13,27 +13,27 @@ import java.util.concurrent.TimeUnit;
 public class TokenManager {
     private final StringRedisTemplate stringRedisTemplate;
 
-    private final String LOGIN_TOKEN_PREFIX = "login:token:";
-    private final String LOGIN_USER_PREFIX = "login:user:";
+    private final String AUTH_TOKEN_PREFIX = "auth:token:";
+    private final String AUTH_USER_PREFIX = "auth:user:";
 
     public String createToken(Long userId) {
         String token = UUID.randomUUID().toString().replaceAll("-", "");
 
-        stringRedisTemplate.opsForValue().set(LOGIN_TOKEN_PREFIX + token, userId.toString(), 7, TimeUnit.DAYS);
-        stringRedisTemplate.opsForValue().set(LOGIN_USER_PREFIX + userId, token, 7, TimeUnit.DAYS);
+        stringRedisTemplate.opsForValue().set(AUTH_TOKEN_PREFIX + token, userId.toString(), 7, TimeUnit.DAYS);
+        stringRedisTemplate.opsForValue().set(AUTH_USER_PREFIX + userId, token, 7, TimeUnit.DAYS);
 
         return token;
     }
 
     public void removeToken(Long userId) {
-        String token = stringRedisTemplate.opsForValue().get(LOGIN_USER_PREFIX + userId);
+        String token = stringRedisTemplate.opsForValue().get(AUTH_USER_PREFIX + userId);
 
-        stringRedisTemplate.delete(LOGIN_USER_PREFIX + userId);
-        stringRedisTemplate.delete(LOGIN_TOKEN_PREFIX + token);
+        stringRedisTemplate.delete(AUTH_USER_PREFIX + userId);
+        stringRedisTemplate.delete(AUTH_TOKEN_PREFIX + token);
     }
 
     public Long getUserIdByToken(String token) {
-        String userId = stringRedisTemplate.opsForValue().get(LOGIN_TOKEN_PREFIX + token);
+        String userId = stringRedisTemplate.opsForValue().get(AUTH_TOKEN_PREFIX + token);
         if (!StringUtils.hasText(userId)) {
             return null;
         }

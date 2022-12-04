@@ -25,7 +25,7 @@ public class WebSecurityConfiguration {
         // 禁用 Session，使用 Redis 保存 Token
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                .antMatchers("/user/login").anonymous()
+                .antMatchers("/auth/login").anonymous()
                 .anyRequest().authenticated();
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
