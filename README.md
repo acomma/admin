@@ -13,6 +13,8 @@
 
 如果系统不需要对外提供接口，则可以不要 api 模块。如果觉得模块过多，可以由 api 模块承担 common 模块的功能，此时由 data 模块依赖 api 模块，facade 模块不再直接依赖 api 模块；同时可以去掉 test 模块，由各个模块各自完成自己的测试代码。facade 模块承担的职责没有想到更好的命名方法，暂且使用 facade 这一名称；另外一种做法是将 facade 模块的功能移到 core 模块。core 模块的名称采用了模糊的命名方法，也可以叫 biz 模块或者 service 模块。data 模块有的地方也叫 dal 模块、dao 模块或者 persistence 模块；目前 PO 对象也是放在这个模块，也有的做法是会有一个单独的 model 模块来承担这部分职责。如果系统有调用外部系统接口的需求，可以在 core 模块或者 data 模块实现。
 
+![](docs/module-dependence-1.excalidraw.png)
+
 ### 分层领域模型
 
 基本采用[Java开发手册(黄山版)](https://github.com/alibaba/p3c)中的约定，但有一些不一样的地方需要特别说明一下
