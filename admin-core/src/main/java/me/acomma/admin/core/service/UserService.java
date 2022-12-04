@@ -8,6 +8,7 @@ import me.acomma.admin.common.exception.BusinessException;
 import me.acomma.admin.data.mapper.UserMapper;
 import me.acomma.admin.data.po.UserPO;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,5 +31,10 @@ public class UserService extends ServiceImpl<UserMapper, UserPO> {
 
     public UserPO getByUsername(String username) {
         return super.getOne(Wrappers.<UserPO>lambdaQuery().eq(UserPO::getUsername, username));
+    }
+
+    @Cacheable(cacheNames = "user", key = "#userId")
+    public UserPO getByUserId(Long userId) {
+        return super.getById(userId);
     }
 }

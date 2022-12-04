@@ -43,7 +43,7 @@ public class TokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        UserPO user = userService.getById(userId);
+        UserPO user = userService.getByUserId(userId);
         // 用户信息不存在时交给后面的过滤器，由它们决定是放行还是需要登录
         if (Objects.isNull(user)) {
             filterChain.doFilter(request, response);

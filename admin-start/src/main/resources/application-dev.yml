@@ -5,6 +5,8 @@ logging:
   level:
     me.acomma.admin.data.mapper: debug
 spring:
+  cache:
+    type: redis
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/admin?characterEncoding=UTF-8&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
