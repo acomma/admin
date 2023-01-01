@@ -52,7 +52,7 @@ CREATE TABLE `user_role` (
   UNIQUE KEY `uk_user_id_role_id` (`user_id`,`role_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='用户角色关系';
 
-CREATE TABLE `menu_action` (
+CREATE TABLE `action` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `menu_id` bigint NOT NULL COMMENT '菜单ID',
   `code` varchar(128) NOT NULL COMMENT '操作编码',

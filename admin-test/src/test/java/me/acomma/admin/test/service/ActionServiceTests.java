@@ -1,7 +1,7 @@
 package me.acomma.admin.test.service;
 
 import lombok.extern.slf4j.Slf4j;
-import me.acomma.admin.core.service.MenuActionService;
+import me.acomma.admin.core.service.ActionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,13 +12,13 @@ import java.util.List;
 @SpringBootTest
 @ActiveProfiles("local")
 @Slf4j
-public class MenuActionServiceTests {
+public class ActionServiceTests {
     @Autowired
-    private MenuActionService menuActionService;
+    private ActionService actionService;
 
     @Test
     void test1() {
-        List<String> codes = menuActionService.getMenuActionCodeByUserId(1000L);
+        List<String> codes = actionService.getActionCodeByUserId(1000L);
         log.info("{}", codes);
     }
 }

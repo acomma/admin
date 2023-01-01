@@ -1,15 +1,15 @@
 package me.acomma.admin.data.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import me.acomma.admin.data.po.MenuActionPO;
+import me.acomma.admin.data.po.ActionPO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface MenuActionMapper extends BaseMapper<MenuActionPO> {
+public interface ActionMapper extends BaseMapper<ActionPO> {
     @Select("""
-            SELECT `code` FROM `menu_action`
+            SELECT `code` FROM `action`
             WHERE `id` IN (
                 SELECT `action_id` FROM `role_action`
                 WHERE `role_id` IN (
@@ -18,5 +18,5 @@ public interface MenuActionMapper extends BaseMapper<MenuActionPO> {
                 )
             )
             """)
-    List<String> getMenuActionCodeByUserId(@Param("userId") Long userId);
+    List<String> getCodeByUserId(@Param("userId") Long userId);
 }

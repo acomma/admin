@@ -1,4 +1,4 @@
-package me.acomma.admin.common.dto.menu;
+package me.acomma.admin.common.dto.action;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,13 +19,14 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddMenuActionDTO implements Serializable {
+public class AddActionDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     /**
      * 菜单ID
      */
+    @NotNull(message = "菜单ID不能为空")
     private Long menuId;
 
     /**

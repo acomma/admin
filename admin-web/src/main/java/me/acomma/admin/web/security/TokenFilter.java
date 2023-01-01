@@ -2,7 +2,7 @@ package me.acomma.admin.web.security;
 
 import lombok.RequiredArgsConstructor;
 import me.acomma.admin.core.manager.TokenManager;
-import me.acomma.admin.core.service.MenuActionService;
+import me.acomma.admin.core.service.ActionService;
 import me.acomma.admin.core.service.UserService;
 import me.acomma.admin.data.po.UserPO;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +25,7 @@ import java.util.Objects;
 public class TokenFilter extends OncePerRequestFilter {
     private final TokenManager tokenManager;
     private final UserService userService;
-    private final MenuActionService menuActionService;
+    private final ActionService actionService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -50,8 +50,8 @@ public class TokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        List<String> menuActionCodes = menuActionService.getMenuActionCodeByUserId(userId);
-        List<SimpleGrantedAuthority> authorities = menuActionCodes.stream().map(SimpleGrantedAuthority::new).toList();
+        List<String> actionCodes = actionService.getActionCodeByUserId(userId);
+        List<SimpleGrantedAuthority> authorities = actionCodes.stream().map(SimpleGrantedAuthority::new).toList();
 
         LoginUser loginUser = LoginUser.builder()
                 .userId(user.getId())

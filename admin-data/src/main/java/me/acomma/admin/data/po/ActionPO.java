@@ -22,8 +22,8 @@ import java.io.Serial;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "menu_action")
-public class MenuActionPO extends BasePO {
+@TableName(value = "action")
+public class ActionPO extends BasePO {
     @Serial
     private static final long serialVersionUID = 1L;
 

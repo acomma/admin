@@ -6,7 +6,7 @@ import me.acomma.admin.common.dto.role.UpdateRoleActionDTO;
 import me.acomma.admin.common.dto.role.UpdateRoleMenuDTO;
 import me.acomma.admin.common.enums.RoleErrorCode;
 import me.acomma.admin.common.exception.BusinessException;
-import me.acomma.admin.core.service.MenuActionService;
+import me.acomma.admin.core.service.ActionService;
 import me.acomma.admin.core.service.MenuService;
 import me.acomma.admin.core.service.RoleActionService;
 import me.acomma.admin.core.service.RoleMenuService;
@@ -28,7 +28,7 @@ public class RoleBusinessService {
     private final RoleService roleService;
     private final MenuService menuService;
     private final RoleMenuService roleMenuService;
-    private final MenuActionService menuActionService;
+    private final ActionService actionService;
     private final RoleActionService roleActionService;
 
     @Transactional(rollbackFor = Exception.class)
@@ -83,7 +83,7 @@ public class RoleBusinessService {
         if (CollectionUtils.isEmpty(dto.getActionIds())) {
             validActionIds = Collections.emptyList();
         } else {
-            validActionIds = menuActionService.getValidActionIds(dto.getActionIds());
+            validActionIds = actionService.getValidActionIds(dto.getActionIds());
         }
 
         List<RoleActionPO> existingRoleActions = roleActionService.list(Wrappers.<RoleActionPO>lambdaQuery()
