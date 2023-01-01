@@ -28,10 +28,10 @@ public class UserRolePO extends BasePO {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 关系ID
+     * ID
      */
-    @TableId(value = "relation_id", type = IdType.INPUT)
-    private Long relationId;
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
     /**
      * 用户ID

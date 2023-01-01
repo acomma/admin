@@ -9,5 +9,5 @@ public class UserConstant {
     /**
      * 系统管理员用户名
      */
-    public static final String SYSTEM_ADMINISTRATOR_USERNAME = "admin";
+    public static final String SYSTEM_ADMINISTRATOR_USER_USERNAME = "admin";
 }

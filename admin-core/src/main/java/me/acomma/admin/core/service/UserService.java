@@ -34,7 +34,7 @@ public class UserService extends ServiceImpl<UserMapper, UserPO> {
     }
 
     @Cacheable(cacheNames = "user", key = "#userId")
-    public UserPO getByUserId(Long userId) {
+    public UserPO getByIdFromCache(Long userId) {
         return super.getById(userId);
     }
 }

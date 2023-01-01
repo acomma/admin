@@ -46,7 +46,7 @@ public class MenuService extends ServiceImpl<MenuMapper, MenuPO> {
             return Collections.emptyList();
         }
         List<MenuPO> menus = super.listByIds(menuIds);
-        return menus.stream().map(MenuPO::getMenuId).toList();
+        return menus.stream().map(MenuPO::getId).toList();
     }
 
     public List<MenuPO> listByUserId(Long userId) {

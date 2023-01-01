@@ -28,10 +28,10 @@ public class RoleMenuPO extends BasePO {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 关系ID
+     * ID
      */
-    @TableId(value = "relation_id", type = IdType.AUTO)
-    private Long relationId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
      * 角色ID

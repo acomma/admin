@@ -10,7 +10,7 @@ import java.util.List;
 public interface MenuActionMapper extends BaseMapper<MenuActionPO> {
     @Select("""
             SELECT `code` FROM `menu_action`
-            WHERE `action_id` IN (
+            WHERE `id` IN (
                 SELECT `action_id` FROM `role_action`
                 WHERE `role_id` IN (
                     SELECT `role_id` FROM `user_role`

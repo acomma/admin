@@ -26,9 +26,9 @@ public class MenuVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 菜单ID
+     * ID
      */
-    private Long menuId;
+    private Long id;
 
     /**
      * 上级ID

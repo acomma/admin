@@ -43,7 +43,7 @@ public class TokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        UserPO user = userService.getByUserId(userId);
+        UserPO user = userService.getByIdFromCache(userId);
         // 用户信息不存在时交给后面的过滤器，由它们决定是放行还是需要登录
         if (Objects.isNull(user)) {
             filterChain.doFilter(request, response);
@@ -54,7 +54,7 @@ public class TokenFilter extends OncePerRequestFilter {
         List<SimpleGrantedAuthority> authorities = menuActionCodes.stream().map(SimpleGrantedAuthority::new).toList();
 
         LoginUser loginUser = LoginUser.builder()
-                .userId(user.getUserId())
+                .userId(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .build();

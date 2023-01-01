@@ -35,6 +35,6 @@ public class RoleService extends ServiceImpl<RoleMapper, RolePO> {
             return Collections.emptyList();
         }
         List<RolePO> roles = super.listByIds(roleIds);
-        return roles.stream().map(RolePO::getRoleId).toList();
+        return roles.stream().map(RolePO::getId).toList();
     }
 }

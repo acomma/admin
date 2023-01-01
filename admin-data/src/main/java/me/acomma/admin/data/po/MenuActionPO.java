@@ -28,10 +28,10 @@ public class MenuActionPO extends BasePO {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 操作ID
+     * ID
      */
-    @TableId(value = "action_id", type = IdType.AUTO)
-    private Long actionId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
      * 菜单ID

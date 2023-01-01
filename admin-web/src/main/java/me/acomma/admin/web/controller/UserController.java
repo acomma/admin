@@ -87,12 +87,12 @@ public class UserController {
         Map<Long, MenuVO> menuMap = new HashMap<>(size);
         for (MenuPO po : pos) {
             // 赋值菜单对象
-            Long menuId = po.getMenuId();
-            MenuVO menu = menuMap.get(menuId);
+            Long id = po.getId();
+            MenuVO menu = menuMap.get(id);
             if (Objects.isNull(menu)) {
                 menu = new MenuVO();
                 menu.setChildren(new ArrayList<>());
-                menuMap.put(menuId, menu);
+                menuMap.put(id, menu);
             }
             BeanUtils.copyProperties(po, menu, "children");
 
@@ -103,7 +103,7 @@ public class UserController {
                 MenuVO parent = menuMap.get(parentId);
                 if (Objects.isNull(parent)) {
                     parent = new MenuVO();
-                    parent.setMenuId(parentId);
+                    parent.setId(parentId);
                     parent.setChildren(new ArrayList<>());
                     menuMap.put(parentId, parent);
                 }

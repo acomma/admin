@@ -28,10 +28,10 @@ public class UserPO extends BasePO {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * ID
      */
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Long userId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
      * 用户名

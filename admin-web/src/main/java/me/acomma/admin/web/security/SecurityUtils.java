@@ -25,7 +25,7 @@ public abstract class SecurityUtils {
 
     public static boolean isSystemAdministratorUser() {
         return Objects.equals(UserConstant.SYSTEM_ADMINISTRATOR_USER_ID, getUserId())
-                || Objects.equals(UserConstant.SYSTEM_ADMINISTRATOR_USERNAME, getUsername());
+                || Objects.equals(UserConstant.SYSTEM_ADMINISTRATOR_USER_USERNAME, getUsername());
     }
 
     public static boolean isSystemAdministratorUser(Long userId) {

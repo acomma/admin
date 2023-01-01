@@ -16,7 +16,7 @@ public class MenuActionService extends ServiceImpl<MenuActionMapper, MenuActionP
             return Collections.emptyList();
         }
         List<MenuActionPO> actions = super.listByIds(actionIds);
-        return actions.stream().map(MenuActionPO::getActionId).toList();
+        return actions.stream().map(MenuActionPO::getId).toList();
     }
 
     public List<String> getMenuActionCodeByUserId(Long userId) {
