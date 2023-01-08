@@ -32,7 +32,7 @@
 
 1. [Java开发手册(黄山版).pdf](https://github.com/alibaba/p3c)
 2. [Java应用结构规范](https://mp.weixin.qq.com/s/oBsLNuJPeyVPegW2c37DVQ)
-3. [第一节：基础框架工程构建](https://www.yuque.com/mercyblitz/java-training-camp/thnpiv)
-4. [第二节：业务工程模板定制](https://www.yuque.com/mercyblitz/java-training-camp/yg1czo)
+3. [第一节：基础框架工程构建](https://github.com/mercyblitz/java-training-camp/blob/main/stage-1/docs/01.%20%E7%AC%AC%E4%B8%80%E8%8A%82%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%A1%86%E6%9E%B6%E5%B7%A5%E7%A8%8B%E6%9E%84%E5%BB%BA.md)
+4. [第二节：业务工程模板定制](https://github.com/mercyblitz/java-training-camp/blob/main/stage-1/docs/02.%20%E7%AC%AC%E4%BA%8C%E8%8A%82%EF%BC%9A%E4%B8%9A%E5%8A%A1%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%AE%9A%E5%88%B6.md)
 5. [领域驱动设计系列文章（2）——浅析VO、DTO、DO、PO的概念、区别和用处](http://www.blogjava.net/johnnylzb/archive/2010/05/27/321968.html)
 6. [COLA](https://github.com/alibaba/COLA)
