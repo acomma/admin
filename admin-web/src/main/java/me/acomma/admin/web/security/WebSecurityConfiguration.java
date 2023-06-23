@@ -3,9 +3,12 @@ package me.acomma.admin.web.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -21,15 +24,15 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    AuthenticationEntryPoint authenticationEntryPoint,
                                                    TokenFilter tokenFilter) throws Exception {
-        http.csrf().disable();
+        http.csrf(AbstractHttpConfigurer::disable);
         // 禁用 Session，使用 Redis 保存 Token
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests()
-                .antMatchers("/auth/login").anonymous()
-                .anyRequest().authenticated();
-        http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.authorizeHttpRequests(authorize ->
+                authorize.requestMatchers("/auth/login").anonymous()
+                        .anyRequest().authenticated());
+        http.exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint));
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
-        http.cors();
+        http.cors(Customizer.withDefaults());
         return http.build();
     }
 
@@ -39,11 +42,17 @@ public class WebSecurityConfiguration {
     }
 
     @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
+
+    @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder())
-                .and()
+                .authenticationProvider(daoAuthenticationProvider(userDetailsService))
                 .build();
     }
 }
