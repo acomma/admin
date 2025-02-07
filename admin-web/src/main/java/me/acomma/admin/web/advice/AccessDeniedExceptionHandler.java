@@ -3,6 +3,7 @@ package me.acomma.admin.web.advice;
 import lombok.extern.slf4j.Slf4j;
 import me.acomma.admin.common.Result;
 import me.acomma.admin.common.enums.SystemErrorCode;
+import me.acomma.admin.web.i18n.MessageUtils;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.access.AccessDeniedException;
@@ -20,6 +21,8 @@ public class AccessDeniedExceptionHandler {
     public Result<Void> handleAccessDeniedException(AccessDeniedException exception) {
         log.error("发生用户无权限异常", exception);
         SystemErrorCode errorCode = SystemErrorCode.UNAUTHORIZED;
-        return Result.<Void>builder().code(errorCode.code()).message(errorCode.message()).build();
+        Integer code = errorCode.code();
+        String message = MessageUtils.getMessage(code.toString(), null, errorCode.message());
+        return Result.<Void>builder().code(code).message(message).build();
     }
 }

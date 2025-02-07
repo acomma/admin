@@ -27,8 +27,8 @@ public class AddMenuDTO implements Serializable {
     /**
      * 上级ID
      */
-    @NotNull(message = "上级ID不能为空")
-    @Min(value = 0, message = "上级ID不能小于0")
+    @NotNull(message = "{menu_parent_id_not_null}")
+    @Min(value = 0, message = "{menu_parent_id_min}")
     private Long parentId;
 
     /**
