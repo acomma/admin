@@ -35,12 +35,12 @@ public class AddMenuDTO implements Serializable {
      * 菜单名称
      */
     @NotBlank(message = "菜单名称不能为空")
-    @Size(max = 32, message = "菜单名称长度不能超过32")
+    @Size(max = 32, message = "菜单名称长度不能超过{max}")
     private String name;
 
     /**
      * 菜单路径
      */
-    @Size(max = 255, message = "菜单路径长度不能超过255")
+    @Size(max = 255, message = "菜单路径长度不能超过{max}")
     private String path;
 }

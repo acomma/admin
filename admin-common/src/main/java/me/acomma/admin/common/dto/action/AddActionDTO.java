@@ -33,13 +33,13 @@ public class AddActionDTO implements Serializable {
      * 操作编码
      */
     @NotBlank(message = "操作编码不能为空")
-    @Size(max = 128, message = "操作编码长度不能超过128")
+    @Size(max = 128, message = "操作编码长度不能超过{max}")
     private String code;
 
     /**
      * 操作名称
      */
     @NotBlank(message = "操作名称不能为空")
-    @Size(max = 128, message = "操作名称长度不能超过128")
+    @Size(max = 128, message = "操作名称长度不能超过{max}")
     private String name;
 }

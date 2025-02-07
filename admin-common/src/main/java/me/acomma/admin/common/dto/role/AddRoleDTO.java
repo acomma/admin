@@ -26,6 +26,6 @@ public class AddRoleDTO implements Serializable {
      * 角色名称
      */
     @NotBlank(message = "角色名称不能为空")
-    @Size(max = 32, message = "角色名称长度不能超过32")
+    @Size(max = 32, message = "角色名称长度不能超过{max}")
     private String name;
 }
